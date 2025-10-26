@@ -23,6 +23,7 @@ public class Game {
             View.printCarsPosition(cars);
             numberOfRounds--;
         }
+        finish();
     }
 
     public List<Car> getWinner() {
