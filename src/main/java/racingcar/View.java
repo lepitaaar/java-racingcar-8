@@ -2,9 +2,13 @@ package racingcar;
 
 import java.util.List;
 
+import static camp.nextstep.edu.missionutils.Console.readLine;
+
 public class View {
 
-    public static void inputCars() {
+    public static String[] inputCarNames() {
+        String carNames = readLine();
+        return carNames.split(",");
     }
 
     public static void inputRounds() {

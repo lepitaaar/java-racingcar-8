@@ -8,7 +8,10 @@ public class Game {
     int numberOfRounds;
 
     public void setUp() {
-        View.inputCars();
+        String[] carNames = View.inputCarNames();
+        for (String carName : carNames) {
+            cars.add(new Car(carName));
+        }
         View.inputRounds();
     }
 
