@@ -12,4 +12,10 @@ public class Car {
     public void move() {
         this.position++;
     }
+
+    public void moveIfCan() {
+        if (Random.isAvailableMove()) {
+            this.position++;
+        }
+    }
 }

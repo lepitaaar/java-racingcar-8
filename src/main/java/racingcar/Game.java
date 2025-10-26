@@ -16,7 +16,13 @@ public class Game {
     }
 
     public void start() {
-        View.printCarsPosition(cars);
+        while (numberOfRounds > 0) {
+            for (Car car : cars) {
+                car.moveIfCan();
+            }
+            View.printCarsPosition(cars);
+            numberOfRounds--;
+        }
     }
 
     public void finish() {
