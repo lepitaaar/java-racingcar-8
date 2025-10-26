@@ -17,16 +17,22 @@ public class Game {
 
     public void start() {
         while (numberOfRounds > 0) {
-            for (Car car : cars) {
-                car.moveIfCan();
-            }
+            moveCars();
             View.printCarsPosition(cars);
             numberOfRounds--;
         }
         finish();
     }
 
-    public List<Car> getWinner() {
+    private void moveCars() {
+        for (Car car : cars) {
+            if (Random.isAvailableMove()) {
+                car.move();
+            }
+        }
+    }
+
+    private List<Car> getWinner() {
         cars.sort((car1, car2) -> car2.position - car1.position);
         int maxPosition = cars.getFirst().position;
         List<Car> winner = new ArrayList<>();
