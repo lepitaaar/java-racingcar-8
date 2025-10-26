@@ -8,11 +8,13 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class View {
 
     public static String[] inputCarNames() {
+        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
         String carNames = readLine();
         return carNames.split(",");
     }
 
     public static int inputRounds() {
+        System.out.println("시도할 횟수는 몇 회인가요?");
         String rounds = readLine();
         return Integer.parseInt(rounds);
     }
@@ -21,7 +23,7 @@ public class View {
         String winnerNames = winner.stream()
                 .map(car -> car.name)
                 .collect(Collectors.joining(", "));
-        System.out.println(winnerNames);
+        System.out.println("최종 우승자 : " + winnerNames);
     }
 
     public static void printCarsPosition(List<Car> cars) {
