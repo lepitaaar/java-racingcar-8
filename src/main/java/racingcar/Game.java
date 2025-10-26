@@ -25,7 +25,19 @@ public class Game {
         }
     }
 
+    public List<Car> getWinner() {
+        cars.sort((car1, car2) -> car2.position - car1.position);
+        int maxPosition = cars.getFirst().position;
+        List<Car> winner = new ArrayList<>();
+        for (Car car : cars) {
+            if (car.position == maxPosition) {
+                winner.add(car);
+            }
+        }
+        return winner;
+    }
+
     public void finish() {
-        View.printWinner(cars);
+        View.printWinner(getWinner());
     }
 }
