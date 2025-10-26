@@ -25,6 +25,10 @@ public class View {
     }
 
     public static void printCarsPosition(List<Car> cars) {
+        for (Car car : cars) {
+            System.out.printf("%s : %s\n", car.name, "-".repeat(car.position));
+        }
+        System.out.println();
     }
 
 }
