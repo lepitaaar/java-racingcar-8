@@ -12,7 +12,7 @@ public class Game {
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
-        View.inputRounds();
+        numberOfRounds = View.inputRounds();
     }
 
     public void start() {

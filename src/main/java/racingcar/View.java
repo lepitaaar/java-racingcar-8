@@ -11,7 +11,9 @@ public class View {
         return carNames.split(",");
     }
 
-    public static void inputRounds() {
+    public static int inputRounds() {
+        String rounds = readLine();
+        return Integer.parseInt(rounds);
     }
 
     public static void printWinner(List<Car> winner) {
