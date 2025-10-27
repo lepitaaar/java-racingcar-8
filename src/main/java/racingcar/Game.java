@@ -1,5 +1,6 @@
 package racingcar;
 
+import racingcar.strategy.MoveStrategy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -9,6 +10,11 @@ import java.util.List;
 public class Game {
     List<Car> cars = new ArrayList<>();
     int numberOfRounds;
+    private final MoveStrategy moveStrategy;
+
+    public Game(MoveStrategy moveStrategy) {
+        this.moveStrategy = moveStrategy;
+    }
 
     public void setUp() {
         String[] carNames = InputView.inputCarNames();
@@ -29,7 +35,7 @@ public class Game {
 
     private void moveCars() {
         for (Car car : cars) {
-            if (Random.isAvailableMove()) {
+            if (moveStrategy.isMovable()) {
                 car.move();
             }
         }
