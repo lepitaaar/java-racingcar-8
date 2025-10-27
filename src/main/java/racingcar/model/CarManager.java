@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class CarManager {
     private final static String NAME_REGEX = "[!@#$%^&*]";
@@ -28,15 +29,14 @@ public class CarManager {
     }
 
     public List<Car> getWinner() {
-        cars.sort((car1, car2) -> car2.getPosition() - car1.getPosition());
-        int maxPosition = cars.getFirst().getPosition();
-        List<Car> winner = new ArrayList<>();
-        for (Car car : cars) {
-            if (car.getPosition() == maxPosition) {
-                winner.add(car);
-            }
-        }
-        return Collections.unmodifiableList(winner);
+        int maxPosition = cars.stream()
+                        .mapToInt(Car::getPosition)
+                        .max()
+                        .orElse(0);
+
+        return cars.stream()
+                        .filter(car -> car.getPosition() == maxPosition)
+                        .toList();
     }
 
     public List<Car> getCars() {
