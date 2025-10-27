@@ -53,6 +53,16 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @ParameterizedTest
+    @DisplayName("자동차 이름은 1자 이상이고 빈칸을 허용하지 않는다")
+    @ValueSource(strings = {" ", "\n"})
+    void car_name_length_test(String name) {
+        assertSimpleTest(() ->
+            assertThatThrownBy(() -> runException(name, "1"))
+                .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
