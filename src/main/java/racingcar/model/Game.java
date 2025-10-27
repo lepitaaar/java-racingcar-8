@@ -3,6 +3,7 @@ package racingcar.model;
 import racingcar.strategy.MoveStrategy;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class Game {
     private final MoveStrategy moveStrategy;
 
     public Game(String[] carNames, int numberOfRounds, MoveStrategy moveStrategy) {
+        validateDuplicateCarNames(carNames);
         for (String carName : carNames) {
             cars.add(new Car(carName.trim()));
         }
@@ -50,5 +52,11 @@ public class Game {
 
     public boolean isFinished() {
         return numberOfRounds <= 0;
+    }
+
+    private void validateDuplicateCarNames(String[] carNames) {
+        boolean hasDuplicateNames = Arrays.stream(carNames).distinct().count() != carNames.length;
+
+        if (hasDuplicateNames) throw new IllegalArgumentException("중복된 자동차 이름이 존재합니다.");
     }
 }
