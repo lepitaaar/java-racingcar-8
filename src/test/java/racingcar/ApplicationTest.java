@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
@@ -32,6 +33,23 @@ class ApplicationTest extends NsTest {
             assertThatThrownBy(() -> runException("pobi,javaji", "1"))
                 .isInstanceOf(IllegalArgumentException.class)
         );
+    }
+
+    @ParameterizedTest
+    @DisplayName("성공적으로 자동차 경주를 한다")
+    @CsvSource(
+            value = {
+                "pobi,pobi2; 1",
+                "pobi,3,2; 1",
+                "pobi   ; 1",
+            },
+            delimiter = ';'
+    )
+    void success_case(String carNames, String rounds) {
+        assertSimpleTest(() -> {
+            run(carNames, rounds);
+            assertThat((output()).contains("최종 우승자"));
+        });
     }
 
     @Test
