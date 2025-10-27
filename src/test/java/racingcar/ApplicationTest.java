@@ -64,6 +64,16 @@ class ApplicationTest extends NsTest {
     }
 
     @ParameterizedTest
+    @DisplayName("자동차 이름은 5자 이하이다.")
+    @ValueSource(strings = {"car", "car,pobi", "car,car2,car3", "car4       ,car2"})
+    void car_name_max_length_test(String name) {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException(name, "1"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @ParameterizedTest
     @DisplayName("레이싱 횟수는 1이상이어야 한다.")
     @ValueSource(strings = {"0", "-1"})
     void round_test(String rounds) {
