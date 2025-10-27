@@ -13,7 +13,7 @@ public class Game {
 
     public Game(String[] carNames, int numberOfRounds, MoveStrategy moveStrategy) {
         for (String carName : carNames) {
-            cars.add(new Car(carName));
+            cars.add(new Car(carName.trim()));
         }
         this.numberOfRounds = numberOfRounds;
         this.moveStrategy = moveStrategy;
