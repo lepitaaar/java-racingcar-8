@@ -1,36 +1,27 @@
-package racingcar;
+package racingcar.model;
 
 import racingcar.strategy.MoveStrategy;
-import racingcar.view.InputView;
-import racingcar.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Game {
-    List<Car> cars = new ArrayList<>();
-    int numberOfRounds;
+    private final List<Car> cars = new ArrayList<>();
+    private int numberOfRounds;
     private final MoveStrategy moveStrategy;
 
-    public Game(MoveStrategy moveStrategy) {
-        this.moveStrategy = moveStrategy;
-    }
-
-    public void setUp() {
-        String[] carNames = InputView.inputCarNames();
+    public Game(String[] carNames, int numberOfRounds, MoveStrategy moveStrategy) {
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
-        numberOfRounds = InputView.inputRounds();
+        this.numberOfRounds = numberOfRounds;
+        this.moveStrategy = moveStrategy;
     }
 
-    public void start() {
-        while (numberOfRounds > 0) {
-            moveCars();
-            OutputView.printCarsPosition(cars);
-            numberOfRounds--;
-        }
-        finish();
+    public void race() {
+        moveCars();
+        numberOfRounds--;
     }
 
     private void moveCars() {
@@ -41,7 +32,7 @@ public class Game {
         }
     }
 
-    private List<Car> getWinner() {
+    public List<Car> getWinner() {
         cars.sort((car1, car2) -> car2.getPosition() - car1.getPosition());
         int maxPosition = cars.getFirst().getPosition();
         List<Car> winner = new ArrayList<>();
@@ -50,10 +41,14 @@ public class Game {
                 winner.add(car);
             }
         }
-        return winner;
+        return Collections.unmodifiableList(winner);
     }
 
-    public void finish() {
-        OutputView.printWinner(getWinner());
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
+    }
+
+    public boolean isFinished() {
+        return numberOfRounds <= 0;
     }
 }
