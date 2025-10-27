@@ -1,5 +1,6 @@
 package racingcar.model;
 
+import racingcar.constant.ErrorMessage;
 import racingcar.strategy.MoveStrategy;
 
 import java.util.ArrayList;
@@ -57,6 +58,6 @@ public class Game {
     private void validateDuplicateCarNames(String[] carNames) {
         boolean hasDuplicateNames = Arrays.stream(carNames).distinct().count() != carNames.length;
 
-        if (hasDuplicateNames) throw new IllegalArgumentException("중복된 자동차 이름이 존재합니다.");
+        if (hasDuplicateNames) throw new IllegalArgumentException(ErrorMessage.DUPLICATE_CAR_NAME_ERROR);
     }
 }

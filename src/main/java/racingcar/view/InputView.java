@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import racingcar.constant.ErrorMessage;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
@@ -18,13 +20,13 @@ public class InputView {
             int numberOfRounds = Integer.parseInt(rounds);
             return validateRoundOfNumber(numberOfRounds);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("유효한 숫자를 입력해야합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_ERROR);
         }
     }
 
     private static int validateRoundOfNumber(int numberOfRounds) {
         if (numberOfRounds <= 0) {
-            throw new IllegalArgumentException("레이싱 횟수는 음수가 될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_ROUND_NUMBER_ERROR);
         }
         return numberOfRounds;
     }

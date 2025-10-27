@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import racingcar.constant.ErrorMessage;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,14 +34,14 @@ public class Car {
 
     private void validateNameLength(String name) {
         if (name.length() > MAX_NAME_LENGTH || name.isBlank()) {
-            throw new IllegalArgumentException(String.format("자동차 이름의 길이는 1~%d자 이내입니다.", MAX_NAME_LENGTH));
+            throw new IllegalArgumentException(String.format(ErrorMessage.CAR_NAME_LENGTH_ERROR, MAX_NAME_LENGTH));
         }
     }
 
     private void validateNameFormat(String name) {
         Matcher matcher = pattern.matcher(name);
         if (matcher.find()) {
-            throw new IllegalArgumentException("자동차 이름은 특수문자를 포함할 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.CAR_NAME_FORMAT_ERROR);
         }
     }
 }
