@@ -1,6 +1,5 @@
 package racingcar.view;
 
-import racingcar.constant.ErrorMessage;
 import racingcar.constant.InputMessage;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;

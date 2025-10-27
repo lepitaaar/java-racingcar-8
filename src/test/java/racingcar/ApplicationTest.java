@@ -45,7 +45,7 @@ class ApplicationTest extends NsTest {
                 "car; 1",
                 "car,pobi; 3",
                 "car,car2,car3; 5",
-                "car4       ,car2; 3"
+                "car42 ,car2; 3"
             },
             delimiter = ';'
     )
