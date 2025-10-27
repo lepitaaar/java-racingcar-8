@@ -9,7 +9,7 @@ public class Car {
 
     private final String name;
     private int position;
-    final int MAX_NAME_LENGTH = 5;
+    private static final int MAX_NAME_LENGTH = 5;
 
     public Car(String name) {
         validateNameLength(name);
