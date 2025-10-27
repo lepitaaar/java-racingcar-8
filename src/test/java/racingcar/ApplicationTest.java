@@ -63,6 +63,16 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @ParameterizedTest
+    @DisplayName("레이싱 횟수는 1이상이어야 한다.")
+    @ValueSource(strings = {"0", "-1"})
+    void round_test(String rounds) {
+        assertSimpleTest(() ->
+            assertThatThrownBy(() -> runException("pobi", rounds))
+                .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
