@@ -14,21 +14,9 @@ public class InputView {
         return carNames.split(DELIMITER);
     }
 
-    public static int inputRounds() {
+    public static String inputStringNumberOfRounds() {
         System.out.println(InputMessage.ROUNDS_PROMPT);
-        String rounds = readLine();
-        try {
-            int numberOfRounds = Integer.parseInt(rounds);
-            return validateRoundOfNumber(numberOfRounds);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_ERROR);
-        }
-    }
 
-    private static int validateRoundOfNumber(int numberOfRounds) {
-        if (numberOfRounds <= 0) {
-            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_ROUND_NUMBER_ERROR);
-        }
-        return numberOfRounds;
+        return readLine();
     }
 }
