@@ -3,6 +3,8 @@ package racingcar;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -37,6 +39,16 @@ class ApplicationTest extends NsTest {
     void car_name_test() {
         assertSimpleTest(() ->
             assertThatThrownBy(() -> runException("pobi,ja$", "1"))
+                .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @ParameterizedTest
+    @DisplayName("자동차 이름 사이를 쉼표로만 구분해야한다")
+    @ValueSource(strings = {"pobi$woni", "pobi.woni,", "pobi,,woni", "pobi|woni|javaji"})
+    void car_name_delimiter_test(String names) {
+        assertSimpleTest(() ->
+            assertThatThrownBy(() -> runException(names, "1"))
                 .isInstanceOf(IllegalArgumentException.class)
         );
     }
