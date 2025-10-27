@@ -1,8 +1,8 @@
 package racingcar;
 
 public class Car {
-    String name;
-    int position;
+    private final String name;
+    private int position;
     final int MAX_NAME_LENGTH = 5;
 
     public Car(String name) {
@@ -13,6 +13,14 @@ public class Car {
 
     public void move() {
         this.position++;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     private void validateNameLength(String name) {
