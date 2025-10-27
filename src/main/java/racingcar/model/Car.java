@@ -32,14 +32,14 @@ public class Car {
 
     private void validateNameLength(String name) {
         if (name.length() > MAX_NAME_LENGTH || name.isBlank()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(String.format("자동차 이름의 길이는 1~%d자 이내입니다.", MAX_NAME_LENGTH));
         }
     }
 
     private void validateNameFormat(String name) {
         Matcher matcher = pattern.matcher(name);
         if (matcher.find()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("자동차 이름은 특수문자를 포함할 수 없습니다.");
         }
     }
 }
