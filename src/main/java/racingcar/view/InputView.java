@@ -12,6 +12,13 @@ public class InputView {
     public static int inputRounds() {
         System.out.println("시도할 횟수는 몇 회인가요?");
         String rounds = readLine();
-        return Integer.parseInt(rounds);
+        return validateRoundOfNumber(Integer.parseInt(rounds));
+    }
+
+    private static int validateRoundOfNumber(int numberOfRounds) {
+        if (numberOfRounds <= 0) {
+            throw new IllegalArgumentException();
+        }
+        return numberOfRounds;
     }
 }
