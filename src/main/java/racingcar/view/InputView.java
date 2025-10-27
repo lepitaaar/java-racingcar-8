@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import racingcar.constant.ErrorMessage;
+import racingcar.constant.InputMessage;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -8,13 +9,13 @@ public class InputView {
     private static final String DELIMITER = ",";
 
     public static String[] inputCarNames() {
-        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
+        System.out.println(InputMessage.CAR_NAMES_PROMPT);
         String carNames = readLine();
         return carNames.split(DELIMITER);
     }
 
     public static int inputRounds() {
-        System.out.println("시도할 횟수는 몇 회인가요?");
+        System.out.println(InputMessage.ROUNDS_PROMPT);
         String rounds = readLine();
         try {
             int numberOfRounds = Integer.parseInt(rounds);
