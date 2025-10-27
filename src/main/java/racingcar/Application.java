@@ -10,6 +10,8 @@ public class Application {
         String[] carNames = InputView.inputCarNames();
         int numberOfRounds = InputView.inputRounds();
         Game game = new Game(carNames, numberOfRounds, new RandomMoveStrategy());
+
+        OutputView.printExecutionResultHeader();
         while (!game.isFinished()) {
             game.race();
             OutputView.printCarsPosition(game.getCars());

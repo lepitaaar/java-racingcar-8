@@ -19,4 +19,8 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    public static void printExecutionResultHeader() {
+        System.out.print("\n실행결과\n");
+    }
 }
