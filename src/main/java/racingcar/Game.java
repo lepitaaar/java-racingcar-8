@@ -1,5 +1,8 @@
 package racingcar;
 
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,17 +11,17 @@ public class Game {
     int numberOfRounds;
 
     public void setUp() {
-        String[] carNames = View.inputCarNames();
+        String[] carNames = InputView.inputCarNames();
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
-        numberOfRounds = View.inputRounds();
+        numberOfRounds = InputView.inputRounds();
     }
 
     public void start() {
         while (numberOfRounds > 0) {
             moveCars();
-            View.printCarsPosition(cars);
+            OutputView.printCarsPosition(cars);
             numberOfRounds--;
         }
         finish();
@@ -33,11 +36,11 @@ public class Game {
     }
 
     private List<Car> getWinner() {
-        cars.sort((car1, car2) -> car2.position - car1.position);
-        int maxPosition = cars.getFirst().position;
+        cars.sort((car1, car2) -> car2.getPosition() - car1.getPosition());
+        int maxPosition = cars.getFirst().getPosition();
         List<Car> winner = new ArrayList<>();
         for (Car car : cars) {
-            if (car.position == maxPosition) {
+            if (car.getPosition() == maxPosition) {
                 winner.add(car);
             }
         }
@@ -45,6 +48,6 @@ public class Game {
     }
 
     public void finish() {
-        View.printWinner(getWinner());
+        OutputView.printWinner(getWinner());
     }
 }
