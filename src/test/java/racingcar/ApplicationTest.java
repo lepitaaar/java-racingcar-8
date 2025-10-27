@@ -48,7 +48,7 @@ class ApplicationTest extends NsTest {
     void success_case(String carNames, String rounds) {
         assertSimpleTest(() -> {
             run(carNames, rounds);
-            assertThat((output()).contains("최종 우승자"));
+            assertThat(output()).contains("최종 우승자");
         });
     }
 
