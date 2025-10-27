@@ -73,6 +73,15 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @Test
+    @DisplayName("자동차 이름은 중복을 허용하지 않는다")
+    void car_name_duplicate_test() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("pobi,pobi,woni", "1"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
     @ParameterizedTest
     @DisplayName("레이싱 횟수는 1이상이어야 한다.")
     @ValueSource(strings = {"0", "-1"})
